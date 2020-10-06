@@ -19,17 +19,38 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+    <form id="addform">
       <div class="modal-body">
-        ...
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" class="form-control" name="fname" placeholder="Enter First Name">
+        </div>
+        
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" class="form-control" name="lname" placeholder="Enter Last Name">
+        </div>
+        
+        <div class="form-group">
+          <label>Course</label>
+          <input type="text" class="form-control" name="course" placeholder="Enter Course">
+        </div>
+        
+        <div class="form-group">
+          <label>Section</label>
+          <input type="text" class="form-control" name="section" placeholder="Enter Section">
+        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Save Student Data</button>
       </div>
+    </form>
     </div>
   </div>
 </div>
-    
+
     <div class="container">
       <div class="jumbotron">
         <div class="row">
