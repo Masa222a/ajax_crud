@@ -54,6 +54,57 @@
   </div>
 </div>
 
+
+<!-- Edit Student Data Modal -->
+<div class="modal fade" id="studentEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Data of Students using AJAX jQuery</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <form id="editFormID">
+        <div class="modal-body">
+          {{ csrf_field() }}
+          {{ method_field('PUT') }}
+          
+          <input type="hidden" name="id" id="id">
+          
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" name="fname" id="fname" placeholder="Enter First Name">
+          </div>
+          
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="lname" id="lname" placeholder="Enter Last Name">
+          </div>
+          
+          <div class="form-group">
+            <label>Course</label>
+            <input type="text" class="form-control" name="course" id="course" placeholder="Enter Course">
+          </div>
+          
+          <div class="form-group">
+            <label>Section</label>
+            <input type="text" class="form-control" name="section" id="section" placeholder="Enter Section">
+          </div>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Student Data Updated</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+</div>
+{{-- End of Student EDIT MODAL --}}
+
     <div class="container">
       <div class="jumbotron">
         <div class="row">
@@ -83,8 +134,8 @@
                 <td>{{ $student->course }}</td>
                 <td>{{ $student->section }}</td>
                 <td>
-                  <button class="btn btn-success">EDIT</button>
-                  <button class="btn btn-danger">DELETE</button>
+                  <a href="#" class="btn btn-success editbtn">Edit</a>
+                  <a href="#" class="btn btn-danger deletebtn">Delete</a>
                 </td>
               </tr>
             @endforeach
@@ -96,6 +147,51 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+<script>
+
+$(document).ready(function() {
+  
+  $('.editbtn').on('click', function() {
+    $('#studentEditModal').modal('show');
+    $tr = $(this).closest('tr');
+      
+    var data = $tr.children("td").map(function() {
+      return $(this).text();
+    }).get();
+    
+    console.log(data);
+    
+    $('#id').val(data[0]);
+    $('#fname').val(data[1]);
+    $('#lname').val(data[2]);
+    $('#course').val(data[3]);
+    $('#section').val(data[4]);
+  });
+  
+  $('#editFormID').on('submit', function(e) {
+    e.preventDefault();
+    
+    var id = $('#id').val();
+    
+    $.ajax({
+      type: "PUT",
+      url: "/studentupdate/"+id,
+      data: $('#editFormID').serialize(),
+      success: function (response) {
+        console.log(response);
+        $('#studentEditModal').modal('hide');
+        alert("Data Updated");
+        location.reload();
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  });
+  
+});  
+</script>
     
     <script type="text/javascript">
       $(document).ready(function() {
