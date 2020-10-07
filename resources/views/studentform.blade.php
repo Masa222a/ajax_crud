@@ -19,34 +19,36 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-    <form id="addform">
-      <div class="modal-body">
-        <div class="form-group">
-          <label>First Name</label>
-          <input type="text" class="form-control" name="fname" placeholder="Enter First Name">
+      
+      <form id="addform">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" name="fname" placeholder="Enter First Name">
+          </div>
+          
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="lname" placeholder="Enter Last Name">
+          </div>
+          
+          <div class="form-group">
+            <label>Course</label>
+            <input type="text" class="form-control" name="course" placeholder="Enter Course">
+          </div>
+          
+          <div class="form-group">
+            <label>Section</label>
+            <input type="text" class="form-control" name="section" placeholder="Enter Section">
+          </div>
+  
         </div>
-        
-        <div class="form-group">
-          <label>Last Name</label>
-          <input type="text" class="form-control" name="lname" placeholder="Enter Last Name">
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Student Data</button>
         </div>
-        
-        <div class="form-group">
-          <label>Course</label>
-          <input type="text" class="form-control" name="course" placeholder="Enter Course">
-        </div>
-        
-        <div class="form-group">
-          <label>Section</label>
-          <input type="text" class="form-control" name="section" placeholder="Enter Section">
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save Student Data</button>
-      </div>
-    </form>
+      </form>
+      
     </div>
   </div>
 </div>
@@ -65,6 +67,30 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+      $(document).ready(function() {
+        
+        $('addform').on('submit', function(e){
+          e.preventDefault();
+          
+          $.ajax({
+            type: "POST",
+            url: "/studentadd",
+            data: $('#addform').serialize(),
+            success: function (response) {
+              console.log(response)
+              $('#studentaddmodal').modal('hide')
+              alert("Data Saved");
+            },
+            error: function(error){
+              console.log(error)
+              alert("Data Not Saved");
+            }
+          });
+        });
+      });
+    </script>
     
   </body>
 </html>
