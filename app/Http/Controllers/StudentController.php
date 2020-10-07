@@ -39,4 +39,12 @@ class StudentController extends Controller
       
       return $students;
     }
+    
+    public function delete($id)
+    {
+      $students = Student::find($id);
+      $students->delete();
+      
+      return $students;
+    }
 }
