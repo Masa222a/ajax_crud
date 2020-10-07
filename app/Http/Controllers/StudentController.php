@@ -9,6 +9,7 @@ class StudentController extends Controller
 {
     public function index()
     {
+      $students = Student::find($id);
       return view('studentform');
     }
     

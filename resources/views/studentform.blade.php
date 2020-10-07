@@ -14,7 +14,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Data using AJAX jQuery</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -22,6 +22,7 @@
       
       <form id="addform">
         <div class="modal-body">
+          {{ csrf_field() }}
           <div class="form-group">
             <label>First Name</label>
             <input type="text" class="form-control" name="fname" placeholder="Enter First Name">
@@ -61,6 +62,27 @@
             Student Add Data
           </button>
         </div>
+        <br>
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">#ID</ht>
+              <th scope="col">First Name</ht>
+              <th scope="col">Last Name</ht>
+              <th scope="col">Course</ht>
+              <th scope="col">Section</ht>
+              <th class="text-right">ACTION</ht>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     
@@ -71,7 +93,7 @@
     <script type="text/javascript">
       $(document).ready(function() {
         
-        $('addform').on('submit', function(e){
+        $('#addform').on('submit', function(e){
           e.preventDefault();
           
           $.ajax({
@@ -82,10 +104,11 @@
               console.log(response)
               $('#studentaddmodal').modal('hide')
               alert("Data Saved");
+              // location.reload();
             },
             error: function(error){
               console.log(error)
-              alert("Data Not Saved");
+              // alert("Data Not Saved");
             }
           });
         });
