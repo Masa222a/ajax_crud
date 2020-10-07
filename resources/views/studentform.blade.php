@@ -75,12 +75,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            @foreach ($students as $student)
+              <tr>
+                <td>{{ $student->id }}</td>
+                <td>{{ $student->fname }}</td>
+                <td>{{ $student->lname }}</td>
+                <td>{{ $student->course }}</td>
+                <td>{{ $student->section }}</td>
+                <td>
+                  <button class="btn btn-success">EDIT</button>
+                  <button class="btn btn-danger">DELETE</button>
+                </td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

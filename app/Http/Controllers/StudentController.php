@@ -9,8 +9,9 @@ class StudentController extends Controller
 {
     public function index()
     {
-      $students = Student::find($id);
-      return view('studentform');
+      $students = Student::all();
+      
+      return view('studentform')->with('students', $students);
     }
     
     public function store(Request $request)
