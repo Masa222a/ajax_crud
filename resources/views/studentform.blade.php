@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <title>Document</title>
+    <title>Ajax_crud</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
@@ -44,8 +44,8 @@
       
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save Student Data</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+              <button type="submit" class="btn btn-primary">決定！</button>
             </div>
           </form>
           
@@ -144,7 +144,7 @@
         <div class="row">
           <h1>Laravel CRUD - AJAX jQuery using Bootstrap MODAL</h1>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentaddmodal">
-            Student Add Data
+            データを追加する
           </button>
         </div>
         <br>
@@ -154,8 +154,8 @@
               <th scope="col">#ID</ht>
               <th scope="col">First Name</ht>
               <th scope="col">Last Name</ht>
-              <th scope="col">Course</ht>
-              <th scope="col">Section</ht>
+              <th scope="col">コース</ht>
+              <th scope="col">所属</ht>
               <th class="text-right">ACTION</ht>
             </tr>
           </thead>
@@ -212,7 +212,7 @@
             success: function (response) {
               console.log(response);
               $('#studentdeleteModal').modal('hide');
-              alert("Data Deleted");
+              alert("削除しました。");
               location.reload();
             },
             error: function(error) {
@@ -255,7 +255,7 @@
             success: function (response) {
               console.log(response);
               $('#studentEditModal').modal('hide');
-              alert("Data Updated");
+              alert("編集しました。");
               location.reload();
             },
             error: function(error) {
@@ -280,7 +280,7 @@
             success: function (response) {
               console.log(response)
               $('#studentaddmodal').modal('hide')
-              alert("Data Saved");
+              alert("保存しました。");
               // location.reload();
             },
             error: function(error){
